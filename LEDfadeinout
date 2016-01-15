@@ -1,0 +1,15 @@
+#define LED 9 // ピン9にLEDを接続する
+int i = 0; 　　　//カウントアップとダウンに使用
+void setup(){
+pinMode(LED,OUTPUT);　//LEDのピンの出力に設定
+}
+void loop(){
+for(i = 0;i<100;i++){ // fron fade-in to fade-out
+analogWrite(LED,i); // LEDの明るさをセット
+delay(15); // 15秒停止
+}
+for (i=100;i>0;i--){ // fron fade-out to fade-in
+analogWrite(LED,i);
+delay(15); // 15秒停止
+}
+}
