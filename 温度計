@@ -1,12 +1,18 @@
-void setup() {
-     Serial.begin(9600) ;      // パソコン(ArduinoIDE)とシリアル通信の準備を行う
-}
-void loop() {
-     int ans , temp , tv ;
 
-     ans = analogRead(0) ;              // アナログ０番ピンからセンサー値を読込む
-     tv  = map(ans,0,1023,0,5000) ;     // センサー値を電圧に変換する
-     temp = map(tv,300,1600,-30,100) ;  // 電圧から温度に変換する
-     Serial.println(temp) ;             // 値をパソコン(ＩＤＥ)に送る
-     delay(2000) ;                      // 2秒毎に繰り返す
+float a_in;          // アナログ入力値(0〜203)
+float temp_c = 0;  // 摂氏値( ℃ )
+
+void setup(){
+  Serial.begin(9600);  // シリアル通信速度
+}
+
+void loop(){
+  // アナログピンから計測値を取得(0〜203)
+  a_in = analogRead(0);
+  // 入力値を摂氏に換算
+  temp_c = ((a_in/1024.0)*5000)/10-273.15;
+  // 改行しながら出力
+  Serial.println( temp_c );
+  // 2000ms待機
+  delay(2000);
 }
