@@ -1,18 +1,21 @@
-
-float a_in;          // アナログ入力値(0〜203)
-float temp_c = 0;  // 摂氏値( ℃ )
-
-void setup(){
-  Serial.begin(9600);  // シリアル通信速度
+//initializes/defines the output pin of the LM335 temperature sensor
+int outputPin= 0;
+//this sets the ground pin to LOW and the input voltage pin to high
+void setup()
+{
+Serial.begin(9600);
 }
 
-void loop(){
-  // アナログピンから計測値を取得(0〜203)
-  a_in = analogRead(0);
-  // 入力値を摂氏に換算
-  temp_c = ((a_in/1024.0)*5000)/10-273.15;
-  // 改行しながら出力
-  Serial.println( temp_c );
-  // 2000ms待機
-  delay(2000);
+//main loop
+void loop()
+{
+int rawvoltage= analogRead(outputPin);
+float millivolts= (rawvoltage/1024.0) * 5000;
+float kelvin= (millivolts/10);
+
+float celsius= kelvin - 273.15;
+Serial.print(celsius);
+Serial.println(" degrees Celsius");
+
+delay(3000);
 }
