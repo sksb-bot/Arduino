@@ -1,3 +1,5 @@
+//参照させていただいたのは、こちらのぺーじ　。文字部分だけ変更。　　　https://qiita.com/jakalada/items/793a6cf5ff2796db4e86
+
 #include <Wire.h>
 #include <Adafruit_GFX.h>
 #include <Adafruit_SSD1306.h>
