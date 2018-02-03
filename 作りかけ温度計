@@ -1,0 +1,32 @@
+/*************************************************
+* Temperature Sensor LM335 and Arduino
+* -----------------
+* Objective: To build a simple digital thermometer
+*                 using a LM335 and an Arduino.
+*
+* https://dayzlab.wordpress.com
+*************************************************/
+ 
+float tempK=0, tempC=0, tempF=0;
+ 
+void setup(){
+ 
+Serial.begin(9600);    //Setup serial to 9600 bps
+}
+ 
+void loop(){
+ 
+tempK = analogRead(0) * 0.004882812 * 100;    //Read temperature in Kelvins first
+ 
+tempC = tempK - 273.15;    //Convert from Kelvin to Celsius
+ 
+tempF = ((tempK) * 9 / 5) - 459.67;    //Convert from Kelvin to Fahrenheit
+ 
+//Print all the values to Serial
+Serial.print("Kelvin: "); Serial.println(tempK);
+Serial.print("Celsius: "); Serial.println(tempC);
+Serial.print("Fahrenheit: "); Serial.println(tempF);
+Serial.println();    //Print Blank Line
+ 
+delay(1000);    //Delay 1 second
+}
